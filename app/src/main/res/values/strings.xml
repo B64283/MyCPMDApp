@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyCPMDApp</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Add Info</string>
+    <string name="title_activity_register_user">RegisterUserActivity</string>
+    <string name="title_activity_log_signup">Main List</string>
+    <string name="action_logout">Log Out</string>
+    <string name="title_activity_create_info">CreateInfoActivity</string>
+</resources>

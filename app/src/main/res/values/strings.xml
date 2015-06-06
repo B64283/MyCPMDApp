@@ -7,4 +7,6 @@
     <string name="title_activity_log_signup">Main List</string>
     <string name="action_logout">Log Out</string>
     <string name="title_activity_create_info">CreateInfoActivity</string>
+    <string name="delete">Delete?</string>
+    <string name="cancel">Cancel</string>
 </resources>

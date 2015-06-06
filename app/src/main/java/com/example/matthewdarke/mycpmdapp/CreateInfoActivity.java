@@ -11,8 +11,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.Parse;
+import com.parse.ParseACL;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 
 public class CreateInfoActivity extends ActionBarActivity {
@@ -49,11 +51,11 @@ public class CreateInfoActivity extends ActionBarActivity {
                 String ItemNumEntered = mItemNum.getText().toString();
 
 
-                ParseObject enteredItems = new ParseObject("EnteredObjects");
-                enteredItems.put("Usertext", ItemNameEntered);
-                enteredItems.put("numberEntered", ItemNumEntered);
-
-                enteredItems.saveInBackground();
+                ParseObject privateNote = new ParseObject("EnteredObjects");
+                privateNote.put("Usertext", ItemNameEntered);
+                privateNote.put("numberEntered", ItemNumEntered);
+                privateNote.setACL(new ParseACL(ParseUser.getCurrentUser()));
+                privateNote.saveInBackground();
 
                 Toast.makeText(CreateInfoActivity.this, "Info Saved!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

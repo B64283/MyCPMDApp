@@ -38,12 +38,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="Save"
         android:id="@+id/buttonsave"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="73dp"
-        android:layout_alignEnd="@+id/editText"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
 
 
 

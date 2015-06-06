@@ -1,6 +1,8 @@
 package com.example.matthewdarke.mycpmdapp;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,7 +22,7 @@ import java.util.List;
 public class MainActivity extends ListActivity {
 
 protected List<ParseObject> mDataItems;
-
+protected ParsedDataAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ protected List<ParseObject> mDataItems;
 
             mDataItems = objectId;
 
-            ParsedDataAdapter adapter = new ParsedDataAdapter(getListView().getContext(), mDataItems);
+             adapter = new ParsedDataAdapter(getListView().getContext(), mDataItems);
             setListAdapter(adapter);
 
 
@@ -74,9 +76,39 @@ protected List<ParseObject> mDataItems;
 
 
 @Override
-public void onListItemClick(ListView l, View v, int position, long id){
+public void onListItemClick(ListView l, View v, final int position, long id) {
 
-    
+    super.onListItemClick(l, v, position, id);
+
+    final ParseObject enteredObject = mDataItems.get(position);
+    //String objectId = enteredObject.getObjectId();
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setMessage(R.string.delete)
+    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int id) {
+            // Delete item!
+            enteredObject.deleteInBackground();
+            enteredObject.saveInBackground();
+            finish();
+            startActivity(getIntent());
+
+        }
+    })
+            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+
+                }
+            });
+
+
+    builder.show();
+
+
+
+
+
 }
 
     @Override
@@ -112,8 +144,8 @@ public void onListItemClick(ListView l, View v, int position, long id){
                 // log out user
                 ParseUser.logOut();
 
-                Intent intentLoginAct = new Intent(this, LogSignupActivity.class);
-                startActivity(intentLoginAct);
+                intent = new Intent(this, LogSignupActivity.class);
+                startActivity(intent);
 
                 break;
 
